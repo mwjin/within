@@ -1,9 +1,14 @@
 #include <iostream>
 
-#include "shape.h"
+#include "lpn_buff.h"
+#include "lpn_proj.h"
 
 int main(int, char**) {
-  Rectangle rect{4, 8};
-  std::cout << "Hello, world!" << std::endl;
-  std::cout << "Rectangle size: " << rect.GetSize() << std::endl;
+  auto buff{std::make_unique<LpnBuff>()};
+  buff->what();
+  buff->GetReplica()->what();
+
+  auto proj{std::make_unique<LpnProj>()};
+  proj->what();
+  proj->GetReplica()->what();
 }
