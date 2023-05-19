@@ -1,14 +1,13 @@
 #include <iostream>
 
-#include "lpn_buff.h"
-#include "lpn_proj.h"
+#include "lpn_buff_switch.h"
 
 int main(int, char**) {
-  auto buff{std::make_unique<LpnBuff>()};
-  buff->what();
-  buff->GetReplica()->what();
-
-  auto proj{std::make_unique<LpnProj>()};
+  auto buff_switch{std::make_unique<LpnBuffSwitch>()};
+  auto proj{buff_switch->GetReplica()};
   proj->what();
-  proj->GetReplica()->what();
+
+  buff_switch->Toggle();
+  auto buff{buff_switch->GetReplica()};
+  buff->what();
 }
