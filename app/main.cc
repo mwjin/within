@@ -14,10 +14,16 @@ int main() {
       std::make_shared<LpnBuffSwitch>(std::make_shared<LpnProj>())};
   auto buff_switch2{
       std::make_shared<LpnBuffSwitch>(std::make_shared<LpnProj>())};
-  auto join{std::make_shared<LpnJoin>(buff_switch1, buff_switch2)};
+  auto buff_switch3{
+      std::make_shared<LpnBuffSwitch>(std::make_shared<LpnProj>())};
+
   std::list<std::shared_ptr<LpnBuffSwitch>> buff_switches{};
   buff_switches.push_back(buff_switch1);
   buff_switches.push_back(buff_switch2);
+  buff_switches.push_back(buff_switch3);
+
+  auto sub_join{std::make_shared<LpnJoin>(buff_switch1, buff_switch2)};
+  auto join{std::make_shared<LpnJoin>(sub_join, buff_switch3)};
 
   Transformer transformer{};
   Optimizer optimizer{};
