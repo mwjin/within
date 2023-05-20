@@ -4,13 +4,16 @@
 #include "lp_tree_generator.h"
 #include "lpn_buff_switch.h"
 #include "lpn_join.h"
+#include "lpn_proj.h"
 #include "optimizer.h"
 #include "path.h"
 #include "transformer.h"
 
 int main() {
-  auto buff_switch1{std::make_shared<LpnBuffSwitch>()};
-  auto buff_switch2{std::make_shared<LpnBuffSwitch>()};
+  auto buff_switch1{
+      std::make_shared<LpnBuffSwitch>(std::make_shared<LpnProj>())};
+  auto buff_switch2{
+      std::make_shared<LpnBuffSwitch>(std::make_shared<LpnProj>())};
   auto join{std::make_shared<LpnJoin>(buff_switch1, buff_switch2)};
   std::list<std::shared_ptr<LpnBuffSwitch>> buff_switches{};
   buff_switches.push_back(buff_switch1);

@@ -3,14 +3,19 @@
 #include "lpn_buff.h"
 #include "lpn_proj.h"
 
-LpnBuffSwitch::LpnBuffSwitch() : Lpn{}, use_buff_{false} {};
+LpnBuffSwitch::LpnBuffSwitch() : Lpn{}, use_buff_{false}, subquery_{nullptr} {};
+LpnBuffSwitch::LpnBuffSwitch(std::shared_ptr<Lpn> subquery)
+    : Lpn{}, use_buff_{false}, subquery_{subquery} {}
 LpnBuffSwitch::~LpnBuffSwitch() = default;
 
 std::shared_ptr<Lpn> LpnBuffSwitch::GetReplica() {
   if (this->use_buff_)
-    return std::make_shared<LpnBuff>();
+    return this->subquery_
+               ? std::make_shared<LpnBuff>(this->subquery_->GetReplica())
+               : std::make_shared<LpnBuff>();
   else
-    return std::make_shared<LpnProj>();
+    return this->subquery_ ? this->subquery_->GetReplica()
+                           : std::make_shared<LpnProj>();
 }
 
 LpnInfo LpnBuffSwitch::what() { return LpnInfo{"LpnBuffSwitch", this}; }
