@@ -7,7 +7,7 @@ class LpnBuff : public Lpn {
  public:
   LpnBuff();
   virtual ~LpnBuff();
-  virtual std::unique_ptr<Lpn> GetReplica() override;
+  virtual std::shared_ptr<Lpn> GetReplica() override;
   virtual LpnInfo what() override;
 };
 

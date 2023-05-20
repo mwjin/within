@@ -9,7 +9,7 @@ class Lpn {
  public:
   Lpn();
   virtual ~Lpn();
-  virtual std::unique_ptr<Lpn> GetReplica() = 0;
+  virtual std::shared_ptr<Lpn> GetReplica() = 0;
   virtual LpnInfo what();
 };
 

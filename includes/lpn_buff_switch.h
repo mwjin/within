@@ -7,7 +7,7 @@ class LpnBuffSwitch : public Lpn {
  public:
   LpnBuffSwitch();
   virtual ~LpnBuffSwitch();
-  virtual std::unique_ptr<Lpn> GetReplica() override;
+  virtual std::shared_ptr<Lpn> GetReplica() override;
   virtual LpnInfo what() override;
   void Toggle();
   bool use_buff();

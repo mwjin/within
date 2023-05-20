@@ -6,11 +6,11 @@
 LpnBuffSwitch::LpnBuffSwitch() : Lpn{}, use_buff_{false} {};
 LpnBuffSwitch::~LpnBuffSwitch() = default;
 
-std::unique_ptr<Lpn> LpnBuffSwitch::GetReplica() {
+std::shared_ptr<Lpn> LpnBuffSwitch::GetReplica() {
   if (this->use_buff_)
-    return std::make_unique<LpnBuff>();
+    return std::make_shared<LpnBuff>();
   else
-    return std::make_unique<LpnProj>();
+    return std::make_shared<LpnProj>();
 }
 
 LpnInfo LpnBuffSwitch::what() { return LpnInfo{"LpnBuffSwitch", this}; }

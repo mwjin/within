@@ -3,8 +3,8 @@
 LpnProj::LpnProj() = default;
 LpnProj::~LpnProj() = default;
 
-std::unique_ptr<Lpn> LpnProj::GetReplica() {
-  return std::make_unique<LpnProj>();
+std::shared_ptr<Lpn> LpnProj::GetReplica() {
+  return std::make_shared<LpnProj>();
 }
 
 LpnInfo LpnProj::what() { return LpnInfo{"LpnProj", this}; }
