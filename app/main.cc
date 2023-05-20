@@ -5,9 +5,9 @@
 int main(int, char**) {
   auto buff_switch{std::make_unique<LpnBuffSwitch>()};
   auto proj{buff_switch->GetReplica()};
-  proj->what();
+  std::cout << proj->what().ToString() << std::endl;
 
   buff_switch->Toggle();
   auto buff{buff_switch->GetReplica()};
-  buff->what();
+  std::cout << buff->what().ToString() << std::endl;
 }

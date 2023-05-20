@@ -1,8 +1,5 @@
 #include "lpn_buff_switch.h"
 
-#include <iomanip>
-#include <iostream>
-
 #include "lpn_buff.h"
 #include "lpn_proj.h"
 
@@ -16,8 +13,6 @@ std::unique_ptr<Lpn> LpnBuffSwitch::GetReplica() {
     return std::make_unique<LpnProj>();
 }
 
-void LpnBuffSwitch::what() {
-  std::cout << "LpnBuffSwitch(" << std::hex << this << ")" << std::endl;
-}
+LpnInfo LpnBuffSwitch::what() { return LpnInfo{"LpnBuffSwitch", this}; }
 
 void LpnBuffSwitch::Toggle() { this->use_buff_ = !this->use_buff_; }

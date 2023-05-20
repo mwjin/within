@@ -8,7 +8,7 @@ class LpnBuffSwitch : public Lpn {
   LpnBuffSwitch();
   virtual ~LpnBuffSwitch();
   virtual std::unique_ptr<Lpn> GetReplica() override;
-  virtual void what() override;
+  virtual LpnInfo what() override;
   void Toggle();
 
  private:
