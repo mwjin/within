@@ -13,7 +13,7 @@ LpTreeGenerator::LpTreeGenerator(
 LpTreeGenerator::~LpTreeGenerator() = default;
 
 std::shared_ptr<Lpn> LpTreeGenerator::GenerateLpTree() {
-  if (toggle_cnt_ == 0) return std::make_shared<Lpn>(nullptr);
+  if (toggle_cnt_ == 0) return nullptr;
   auto result{tree_template_->GetReplica()};
   ToggleSwitches();
   return result;
