@@ -16,3 +16,5 @@ std::unique_ptr<Lpn> LpnBuffSwitch::GetReplica() {
 LpnInfo LpnBuffSwitch::what() { return LpnInfo{"LpnBuffSwitch", this}; }
 
 void LpnBuffSwitch::Toggle() { this->use_buff_ = !this->use_buff_; }
+
+bool LpnBuffSwitch::use_buff() { return this->use_buff_; }
