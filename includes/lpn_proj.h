@@ -6,7 +6,7 @@
 class LpnProj : public Lpn {
  public:
   LpnProj();
-  virtual ~LpnProj();
+  ~LpnProj();
   virtual std::shared_ptr<Lpn> GetReplica() override;
   virtual LpnInfo what() override;
 };
