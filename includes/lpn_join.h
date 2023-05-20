@@ -10,6 +10,7 @@ class LpnJoin : public Lpn {
   ~LpnJoin();
   virtual std::shared_ptr<Lpn> GetReplica() override;
   virtual LpnInfo what() override;
+  virtual void Print() override;
   std::shared_ptr<Lpn> left() const;
   std::shared_ptr<Lpn> right() const;
 

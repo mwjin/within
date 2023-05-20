@@ -11,6 +11,7 @@ class Lpn {
   virtual ~Lpn();
   virtual std::shared_ptr<Lpn> GetReplica() = 0;
   virtual LpnInfo what();
+  virtual void Print();
 };
 
 #endif  // LPN_H_

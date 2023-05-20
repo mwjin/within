@@ -1,5 +1,7 @@
 #include "lpn_join.h"
 
+#include <iostream>
+
 LpnJoin::LpnJoin() = default;
 LpnJoin::~LpnJoin() = default;
 
@@ -12,6 +14,11 @@ std::shared_ptr<Lpn> LpnJoin::GetReplica() {
 }
 
 LpnInfo LpnJoin::what() { return LpnInfo{"LpnJoin", this}; }
+void LpnJoin::Print() {
+  std::cout << "Root: " << this->what().ToString() << std::endl;
+  std::cout << "Left: " << this->left_->what().ToString() << std::endl;
+  std::cout << "Right: " << this->right_->what().ToString() << std::endl;
+}
 
 std::shared_ptr<Lpn> LpnJoin::left() const { return left_; }
 std::shared_ptr<Lpn> LpnJoin::right() const { return right_; }
