@@ -26,3 +26,5 @@ void LpTreeGenerator::ToggleSwitches() {
   }
   --toggle_cnt_;
 }
+
+bool LpTreeGenerator::CanGenerate() { return toggle_cnt_ > 0; }
