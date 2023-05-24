@@ -11,10 +11,10 @@ class LpnBuffSwitch : public Lpn {
   virtual std::shared_ptr<Lpn> GetReplica() override;
   virtual LpnInfo what() override;
   void Toggle();
-  bool use_buff();
+  bool inlined();
 
  private:
-  bool use_buff_;
+  bool inlined_;
   std::shared_ptr<Lpn> subquery_;
 };
 

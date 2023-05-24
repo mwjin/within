@@ -42,5 +42,6 @@ int main() {
     auto path{optimizer.BuildBestPath(optimized_lp_tree)};
 
     if (!best_path || best_path->cost() > path->cost()) best_path = path;
+    lp_tree_generator.FixInlined();
   }
 };

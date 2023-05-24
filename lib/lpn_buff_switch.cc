@@ -3,23 +3,23 @@
 #include "lpn_buff.h"
 #include "lpn_proj.h"
 
-LpnBuffSwitch::LpnBuffSwitch() : Lpn{}, use_buff_{false}, subquery_{nullptr} {};
+LpnBuffSwitch::LpnBuffSwitch() : Lpn{}, inlined_{}, subquery_{nullptr} {};
 LpnBuffSwitch::LpnBuffSwitch(std::shared_ptr<Lpn> subquery)
-    : Lpn{}, use_buff_{false}, subquery_{subquery} {}
+    : Lpn{}, inlined_{}, subquery_{subquery} {}
 LpnBuffSwitch::~LpnBuffSwitch() = default;
 
 std::shared_ptr<Lpn> LpnBuffSwitch::GetReplica() {
-  if (this->use_buff_)
+  if (this->inlined_)
+    return this->subquery_ ? this->subquery_->GetReplica()
+                           : std::make_shared<LpnProj>();
+  else
     return this->subquery_
                ? std::make_shared<LpnBuff>(this->subquery_->GetReplica())
                : std::make_shared<LpnBuff>();
-  else
-    return this->subquery_ ? this->subquery_->GetReplica()
-                           : std::make_shared<LpnProj>();
 }
 
 LpnInfo LpnBuffSwitch::what() { return LpnInfo{"LpnBuffSwitch", this}; }
 
-void LpnBuffSwitch::Toggle() { this->use_buff_ = !this->use_buff_; }
+void LpnBuffSwitch::Toggle() { this->inlined_ = !this->inlined_; }
 
-bool LpnBuffSwitch::use_buff() { return this->use_buff_; }
+bool LpnBuffSwitch::inlined() { return this->inlined_; }

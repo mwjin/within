@@ -13,14 +13,16 @@ class LpTreeGenerator {
                   std::list<std::shared_ptr<LpnBuffSwitch>>& buff_switches);
   ~LpTreeGenerator();
   std::shared_ptr<Lpn> GenerateLpTree();
+  void FixInlined();
   bool CanGenerate();
 
  private:
-  void ToggleSwitches();
+  void ToggleSwitch();
 
   std::shared_ptr<Lpn> tree_template_;
   std::vector<std::shared_ptr<LpnBuffSwitch>> buff_switches_;
-  int toggle_cnt_;
+  int switch_idx_;
+  int prev_toggle_idx_;
 };
 
 #endif  // LP_TREE_GENERATOR_H_
